@@ -1,0 +1,4 @@
+INCLUDE_DIRECTORIES(.)
+ADD_DEFINITIONS(-DMPI_VERSION=4)
+SET(SOURCES osu_bw.c osu_util.c osu_util_mpi.c)
+ADD_EXECUTABLE(50-bandwidth ${SOURCES})
