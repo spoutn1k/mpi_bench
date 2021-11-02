@@ -56,7 +56,7 @@ int main(int argc, char **argv) {
 
   // Compute the local sum of the squared differences from the mean
   float local_sq_diff = 0;
-  for (i = 0; i < num_elements_per_proc; i++) {
+  for (int i = 0; i < num_elements_per_proc; i++) {
     local_sq_diff += (rand_nums[i] - mean) * (rand_nums[i] - mean);
   }
 
