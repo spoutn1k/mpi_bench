@@ -18,10 +18,11 @@
 
 // Creates an array of random numbers. Each number has a value from 0 - 1
 float *create_rand_nums(int num_elements) {
+  int i;
   float *rand_nums = (float *)malloc(sizeof(float) * num_elements);
   assert(rand_nums != NULL);
 
-  for (int i = 0; i < num_elements; i++) {
+  for (i = 0; i < num_elements; i++) {
     rand_nums[i] = (rand() / (float)RAND_MAX);
   }
 
@@ -30,7 +31,7 @@ float *create_rand_nums(int num_elements) {
 
 int main(int argc, char **argv) {
   int num_elements_per_proc = ELEMENTS_PER_PROC;
-  int world_rank, world_size;
+  int world_rank, world_size, i;
   float *rand_nums = NULL;
   float local_sum = 0;
 
@@ -44,7 +45,7 @@ int main(int argc, char **argv) {
   rand_nums = create_rand_nums(num_elements_per_proc);
 
   // Sum the numbers locally
-  for (int i = 0; i < num_elements_per_proc; i++) {
+  for (i = 0; i < num_elements_per_proc; i++) {
     local_sum += rand_nums[i];
   }
 
@@ -56,7 +57,7 @@ int main(int argc, char **argv) {
 
   // Compute the local sum of the squared differences from the mean
   float local_sq_diff = 0;
-  for (int i = 0; i < num_elements_per_proc; i++) {
+  for (i = 0; i < num_elements_per_proc; i++) {
     local_sq_diff += (rand_nums[i] - mean) * (rand_nums[i] - mean);
   }
 
